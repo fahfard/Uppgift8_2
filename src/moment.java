@@ -11,7 +11,7 @@ public class moment {
 		bestalldProdukt = fabrik.order("perfekt_lycka");
 		System.out.println(bestalldProdukt);
 
-		// test
+		// testar igen
 		
 		System.out.println(fabrik);
 	}
