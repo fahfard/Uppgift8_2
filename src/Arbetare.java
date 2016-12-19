@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public class Arbetare {
 	
 	private int time = 7 * 60; // 7h work time
@@ -8,8 +10,13 @@ public class Arbetare {
 
 	public void assignWorker(Produkt workAssignment, int workUnits) {
 		
-		System.out.println(workUnits + "\n");
-		System.out.println(workAssignment);
-		
+		for (Map.Entry<Legobit, Integer> produktEntry : workAssignment.getPieces()) {
+			Legobit testLego = produktEntry.getKey();
+			int testAmount = produktEntry.getValue();
+			
+			System.out.println(testLego);
+			System.out.println(testAmount);
+		}
+
 	}
 }

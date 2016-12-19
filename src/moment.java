@@ -2,7 +2,7 @@ public class moment {
 	public static void main(String[] args) {
 		
 		LegoFabrik fabrik = new LegoFabrik();
-
+		
 		System.out.println(fabrik);
 
 		Produkt bestalldProdukt = fabrik.order("polisstation");

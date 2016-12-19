@@ -69,7 +69,6 @@ public class Lager {
 			for (Map.Entry<Legobit, Integer> lagerEntry : this.legobitarMap.entrySet()) {
 				Legobit lagerLegobit = lagerEntry.getKey();
 
-
 				if (lagerLegobit.equals(removeLegobit)) {
 					this.legobitarMap.put(lagerLegobit, lagerEntry.getValue() - amount);
 					legobitToBeUpdatedHasBeenFound = true;
