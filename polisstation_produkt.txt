@@ -1,0 +1,3 @@
+EttXFem, 1
+EttXTva, 2
+SexXAtta, 3
