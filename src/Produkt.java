@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,7 +32,7 @@ public class Produkt {
 
 
 	public String toString() {
-		String retVal = this.name + " består av följande bitar: \n";
+		String retVal = this.name + " consists of the following pieces: \n";
 		
 
 		for (Map.Entry<Legobit, Integer> entry : this.legobitarMap.entrySet()) {

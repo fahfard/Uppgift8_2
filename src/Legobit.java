@@ -39,7 +39,6 @@ public class Legobit {
 	public Legobit (String type) {
 		String[] typeParts = type.split("X");
 
-		
 		this.height = textNummer.get(typeParts[0]); 
 		this.length = textNummer.get(typeParts[1]);
 	}

@@ -43,7 +43,6 @@ public class Lager {
 	public void add(String type, int amount) { // add
 		Legobit nyLegobit = new Legobit(type);
 
-		
 		for (Map.Entry<Legobit, Integer> entry : this.legobitarMap.entrySet()) {
 			Legobit gammalLegobit = entry.getKey();
 			
@@ -54,8 +53,6 @@ public class Lager {
 		}
 
 		this.legobitarMap.put(nyLegobit, amount);
-
-
 	}
 
 	public void removeParts(Produkt produkt) { // remove legobitar
@@ -84,7 +81,14 @@ public class Lager {
 		
 	}
 		
-		
+	public boolean checkLager(){ // check if lager is almost empty (5) "trigger"
+	
+		for (Map.Entry<Legobit, Integer> entry : this.legobitarMap.entrySet()) {
+			if(entry.getValue() <= 5)
+				return false;
+		}
+	return true;
+	}
 		
 		
 
