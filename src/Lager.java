@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 
 public class Lager {
 	private Map<Legobit, Integer> legobitarMap;
+	private int totalAmount;
 
 	public void save() { 	// spara till lager.txt
 		try(  PrintWriter out = new PrintWriter("lager.txt")  ){
@@ -61,6 +62,8 @@ public class Lager {
 			Legobit removeLegobit = produktEntry.getKey();
 			int amount = produktEntry.getValue();
 			
+			totalAmount += amount;
+			
 			boolean legobitToBeUpdatedHasBeenFound = false;
 			
 			for (Map.Entry<Legobit, Integer> lagerEntry : this.legobitarMap.entrySet()) {
@@ -78,6 +81,10 @@ public class Lager {
 			}
 
 		}
+		
+		Arbetare arbetare = new Arbetare();
+		
+		arbetare.assignWorker(produkt, totalAmount);
 		
 	}
 		

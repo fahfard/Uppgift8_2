@@ -1,7 +1,7 @@
 public class LegoFabrik {
 	
 	private Lager lager;
-
+	
 	public LegoFabrik() {
 		this.lager = new Lager();
 	}
@@ -14,12 +14,11 @@ public class LegoFabrik {
 	public Produkt order(String productName) {
 		Produkt bestalldProdukt = new Produkt(productName);
 
-		this.lager.removeParts(bestalldProdukt);
+		this.lager.removeParts(bestalldProdukt);	
 		this.lager.save();
 		
 		if(!this.lager.checkLager())
-			System.out.print("Lagret håller på ta slut!\n");
-		
+			System.out.print("Lagret hÃ¥ller pÃ¥ ta slut!\n"); // change this later!
 		return bestalldProdukt;
 
 	}
