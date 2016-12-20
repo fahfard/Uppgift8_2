@@ -15,7 +15,6 @@ public class Arbetare {
 	private int workerTotalLeftMinutes;
 	private double cost = 0.5; // cost per minute
 	private double totalCost;
-	private static final int workPerpiece = 5; // 5 minutes per 1 dimension, 1x1 would equal a total of 10 minutes work.
 	private int totalWorkAmount;
 	private String productName;
 	private List<String> listofAssignedWork = new ArrayList<String>();
@@ -32,7 +31,7 @@ public class Arbetare {
 			int Amount = produktEntry.getValue();
 			
 			totalWorkAmount += (Lego.getLength() * workUnits);
-			totalWorkAmount += (Lego.getHeight() * workUnits);  // calculate total worktime			
+			totalWorkAmount += (Lego.getHeight() * workUnits); // calculate total worktime			
 		}
 		
 		totalCost = cost * totalWorkAmount; // calculate total cost of produkt
