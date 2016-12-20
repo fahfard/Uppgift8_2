@@ -59,6 +59,7 @@ public class Jcomp extends JFrame {
 	    findFiles();
 	   
 	    produktArea.setText(table);
+	    table = "";
 	    
 	    workerArea = new JTextArea(10, 20);
 	    loadWorkerinfo();
@@ -98,6 +99,7 @@ public class Jcomp extends JFrame {
 					getWorkerlist();
 				    workerArea.setText(workerTable);
 				    workerTable = "";
+				    table = "";
 				} else {
 					// do nothing
 				}
