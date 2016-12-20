@@ -35,6 +35,12 @@ public class Legobit {
 		map.put(10, "Tio");
 		nummerText = Collections.unmodifiableMap(map);
 	}
+	public int getHeight() {
+		return this.height;
+	}
+	public int getLength() {
+		return this.length;
+	}
 
 	public Legobit (String type) {
 		String[] typeParts = type.split("X");

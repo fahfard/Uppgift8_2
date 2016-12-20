@@ -83,7 +83,7 @@ public class Lager {
 		
 		Arbetare arbetare = new Arbetare();
 		
-		arbetare.assignWorker(produkt, totalAmount);
+		arbetare.assignWork(produkt, totalAmount);
 		
 	}
 		
