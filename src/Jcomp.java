@@ -78,8 +78,12 @@ public class Jcomp extends JFrame {
 		bestallButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String indata = showInputDialog(null, "Beställ produkt: ");
-				Produkt orderedProduct = legoWorld.order(indata);
-				produktArea2.setText("" + orderedProduct);
+				if(indata != null){
+					Produkt orderedProduct = legoWorld.order(indata);
+					produktArea2.setText("" + orderedProduct);
+				} else {
+					// do nothing
+				}
 		    }
 		});
 		panel.add(lagerArea, BorderLayout.CENTER);
