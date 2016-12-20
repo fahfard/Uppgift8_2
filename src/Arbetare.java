@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,35 +10,45 @@ import java.util.List;
 public class Arbetare {
 	
 	private int time = 7 * 60; // 7h work time
+	private int totalWorkTime;
+	private int workerTotalLeftHours;
+	private int workerTotalLeftMinutes;
+	private double cost = 0.5; // cost per minute
+	private double totalCost;
 	private static final int workPerpiece = 5; // 5 minutes per 1 dimension, 1x1 would equal a total of 10 minutes work.
-	private int totalWorkamount;
+	private int totalWorkAmount;
 	private String productName;
-	private List<String> arbetare = new ArrayList<String>();
+	private List<String> listofAssignedWork = new ArrayList<String>();
 	
 	public String toString(){
 		String retVal = "";
-		
-		retVal += productName + "," + totalWorkamount;
-		
+		retVal += productName + "," + totalWorkAmount;
 		return retVal;
 	}
 
 	public void assignWork(Produkt workAssignment, int workUnits) {
-		this.load();
 		for (Map.Entry<Legobit, Integer> produktEntry : workAssignment.getPieces()) {
-			Legobit testLego = produktEntry.getKey();
-			int testAmount = produktEntry.getValue();
+			Legobit Lego = produktEntry.getKey();
+			int Amount = produktEntry.getValue();
 			
-			System.out.println("Assign work: ");
-			System.out.println("legobit length: " + testLego.getLength());
-			System.out.println("legobit height: " + testLego.getHeight());
-			totalWorkamount += (testLego.getLength() * workUnits); // calculate total worktime
-			
-			
+			totalWorkAmount += (Lego.getLength() * workUnits);
+			totalWorkAmount += (Lego.getHeight() * workUnits);  // calculate total worktime			
 		}
+		
+		totalCost = cost * totalWorkAmount; // calculate total cost of produkt
 		productName = workAssignment.getName();
-		System.out.println(productName + " will require a total of: " + totalWorkamount + "minutes to complete!");
-		this.arbetare.add(productName + "," + totalWorkamount);
+		System.out.println(productName + " will require a total of: " + totalWorkAmount + " minutes to complete! Cost: " + totalCost + "€");
+		
+		totalWorkTime = time - totalWorkAmount; // calculate workers total time left
+		
+		workerTotalLeftHours = totalWorkTime / 60; // get hours remaining of project
+		workerTotalLeftMinutes = totalWorkTime - (workerTotalLeftHours * 60); // get minutes remaining
+		
+		System.out.println("Total work time remaining for worker is: " + workerTotalLeftHours + " hours and " + workerTotalLeftMinutes + " minutes");
+		
+		this.listofAssignedWork.add(productName + "," + totalWorkAmount + "," + workerTotalLeftHours + "," + workerTotalLeftMinutes + "," + totalCost);
+		
+		this.load();
 		this.save();
 	}
 	
@@ -47,7 +56,7 @@ public class Arbetare {
 		String table = "";
 		
 		try(  PrintWriter out = new PrintWriter("arbetare.txt")  ){
-		    for(String lines : arbetare){
+		    for(String lines : listofAssignedWork){
 		    	table += lines + "\n";
 		    }
 			
@@ -65,12 +74,12 @@ public class Arbetare {
         try {
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
-				String[] productAndminutes = line.split(",");
-				String type = productAndminutes[0];
-				String amount = productAndminutes[1];
-				
-				this.arbetare.add(type + "," + amount);	
-			}
+				if(line != null){	// incase file is empty
+	            	String[] productAndminutes = line.split(",");
+					
+					this.listofAssignedWork.add(productAndminutes[0] + "," + productAndminutes[1] + "," + productAndminutes[2] + "," + productAndminutes[3] + "," + productAndminutes[4]);
+				}
+			} 
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

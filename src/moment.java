@@ -6,11 +6,11 @@ public class moment {
 		System.out.println(fabrik);
 
 		Produkt bestalldProdukt = fabrik.order("polisstation");
-		System.out.println(bestalldProdukt);
-		System.out.println(fabrik);
+		//System.out.println(bestalldProdukt);
+		//System.out.println(fabrik);
 		
-		bestalldProdukt = fabrik.order("perfekt_lycka");
+		/*bestalldProdukt = fabrik.order("perfekt_lycka");
 		System.out.println(bestalldProdukt);		
-		System.out.println(fabrik);
+		System.out.println(fabrik);*/
 	}
 }
