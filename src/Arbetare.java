@@ -19,7 +19,7 @@ public class Arbetare {
 			System.out.println("Assign work: ");
 			System.out.println("legobit length: " + testLego.getLength());
 			System.out.println("legobit height: " + testLego.getHeight());
-			totalWorkamount += (testLego.getLength() * workUnits);
+			totalWorkamount += (testLego.getLength() * workUnits); // calculate total worktime
 
 			
 		}
