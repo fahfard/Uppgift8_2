@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.swing.JOptionPane.*;
 
@@ -21,8 +23,10 @@ public class Jcomp extends JFrame {
      private JLabel statusLabel;
      private JPanel controlPanel;
      private JTextArea lagerArea, produktArea, produktArea2, workerArea;
+     private List<String> workerInfo = new ArrayList<String>();
      
      private String table = "";
+     private String workerTable = "";
 
 	public Jcomp(){
 		prepareGUI();
@@ -57,6 +61,10 @@ public class Jcomp extends JFrame {
 	    produktArea.setText(table);
 	    
 	    workerArea = new JTextArea(10, 20);
+	    loadWorkerinfo();
+	    getWorkerlist();
+	    workerArea.setText(workerTable);
+	    workerTable = "";
 	    
 	    JPanel panel = new JPanel();
 	    JPanel panel2 = new JPanel();
@@ -83,6 +91,10 @@ public class Jcomp extends JFrame {
 					produktArea2.setText("" + orderedProduct);
 					findFiles();
 					produktArea.setText(table);
+					loadWorkerinfo();
+					getWorkerlist();
+				    workerArea.setText(workerTable);
+				    workerTable = "";
 				} else {
 					// do nothing
 				}
@@ -113,6 +125,42 @@ public class Jcomp extends JFrame {
 		for (File produktfile : files) {
 		    table += produktfile + "\n";
 		}
+	}
+	
+	private void loadWorkerinfo(){
+		String csvFile = "arbetare.txt";
+        BufferedReader br = null;
+        String line = "";
+
+        try {
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+				if(line != null){	// incase file is empty
+	            	String[] productAndminutes = line.split(",");
+					
+					this.workerInfo.add(productAndminutes[0] + "," + productAndminutes[1] + "," + productAndminutes[2] + "," + productAndminutes[3] + "," + productAndminutes[4]);
+				}
+			} 
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+	}
+	private void getWorkerlist(){
+		for(String lines: workerInfo){
+			workerTable += lines + "\n";
+		}
+	this.workerInfo.clear();
 	}
 }
 

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
+import static javax.swing.JOptionPane.*;
 
 public class Arbetare {
 	
@@ -20,9 +21,13 @@ public class Arbetare {
 	private List<String> listofAssignedWork = new ArrayList<String>();
 	
 	public String toString(){
-		String retVal = "";
-		retVal += productName + "," + totalWorkAmount;
-		return retVal;
+		
+		String buffer = "";
+		
+		for(String lines: listofAssignedWork){
+			buffer += lines + "\n";
+		}
+		return buffer;
 	}
 
 	public void assignWork(Produkt workAssignment, int workUnits) {
@@ -36,14 +41,14 @@ public class Arbetare {
 		
 		totalCost = cost * totalWorkAmount; // calculate total cost of produkt
 		productName = workAssignment.getName();
-		System.out.println(productName + " will require a total of: " + totalWorkAmount + " minutes to complete! Cost: " + totalCost + "€");
+		showMessageDialog(null, productName + " will require a total of: " + totalWorkAmount + " minutes to complete! Cost: " + totalCost + "€");
 		
 		totalWorkTime = time - totalWorkAmount; // calculate workers total time left
 		
 		workerTotalLeftHours = totalWorkTime / 60; // get hours remaining of project
 		workerTotalLeftMinutes = totalWorkTime - (workerTotalLeftHours * 60); // get minutes remaining
 		
-		System.out.println("Total work time remaining for worker is: " + workerTotalLeftHours + " hours and " + workerTotalLeftMinutes + " minutes");
+		showMessageDialog(null, "Total work time remaining for worker is: " + workerTotalLeftHours + " hours and " + workerTotalLeftMinutes + " minutes");
 		
 		this.listofAssignedWork.add(productName + "," + totalWorkAmount + "," + workerTotalLeftHours + "," + workerTotalLeftMinutes + "," + totalCost);
 		
@@ -65,7 +70,7 @@ public class Arbetare {
 		}
 	}
 	
-	private void load() {
+	public void load() {
 		String csvFile = "arbetare.txt";
         BufferedReader br = null;
         String line = "";
