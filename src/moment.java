@@ -9,8 +9,8 @@ public class moment {
 		System.out.println(bestalldProdukt);
 		System.out.println(fabrik);
 		
-		/*bestalldProdukt = fabrik.order("perfekt_lycka");
+		bestalldProdukt = fabrik.order("perfekt_lycka");
 		System.out.println(bestalldProdukt);		
-		System.out.println(fabrik);*/
+		System.out.println(fabrik);
 	}
 }

@@ -18,7 +18,7 @@ public class LegoFabrik {
 		this.lager.save();
 		
 		if(!this.lager.checkLager())
-			System.out.print("Lagret håller på ta slut!\n"); // change this later!
+			System.out.print("Storage is running out of LEGO!\n"); // change this later!
 		return bestalldProdukt;
 
 	}

@@ -44,6 +44,10 @@ public class Produkt {
 	public Set<Map.Entry<Legobit, Integer>> getPieces() {
 		return this.legobitarMap.entrySet();
 	}
+	
+	public String getName(){
+		return this.name;
+	}
 
 	public void add(String type, int amount) {
 		Legobit nyLegobit = new Legobit(type);
@@ -68,7 +72,7 @@ public class Produkt {
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
-
+        
  		this.legobitarMap = new HashMap<Legobit, Integer>();
 
         try {
