@@ -74,12 +74,15 @@ public class Jcomp extends JFrame {
 	    
 		JButton lagerButton = new JButton("Show Lego Storage");
 		JButton bestallButton = new JButton("Order Product");
+		JButton addlegoButton = new JButton("Add Lego");
 		
 		LegoFabrik legoWorld = new LegoFabrik();
+		
+		Lager lager = new Lager();
 	    
 		lagerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	    	   lagerArea.setText("" + legoWorld);
+	    	   lagerArea.setText("" + lager);
 			}
 	    });
 		
@@ -100,12 +103,33 @@ public class Jcomp extends JFrame {
 				}
 		    }
 		});
+		
+		addlegoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+	    	   String indata = showInputDialog(null, "Add lego (one model and amount at a time)");
+	    	   if(indata != null){
+	    		   String bits[] = indata.split("_");
+	    		   
+	    		   Legobit nyLegobit = new Legobit(bits[1]);
+	    		   String tempLego = nyLegobit.getheightNumber() + "X" + nyLegobit.getlengthNumber();
+	    		    
+	    		   Lager lager = new Lager();
+	    		   lager.add(tempLego, Integer.parseInt(bits[0]));
+	    		   lager.save();
+	    		   lagerArea.setText("" + lager);
+	    	   } else {
+	    		   // do nothing
+	    	   }
+			}
+	    });
+		
 		panel.add(lagerArea, BorderLayout.CENTER);
 		panel.add(produktArea, BorderLayout.LINE_START);
 		panel2.add(produktArea2, BorderLayout.CENTER);
 		panel.add(workerArea, BorderLayout.LINE_END);
 		panel2.add(lagerButton, BorderLayout.NORTH);
 		panel2.add(bestallButton, BorderLayout.SOUTH);
+		panel2.add(addlegoButton, BorderLayout.EAST);
 		
 		controlPanel.add(panel);
 		controlPanel.add(panel2);
