@@ -81,6 +81,8 @@ public class Jcomp extends JFrame {
 				if(indata != null){
 					Produkt orderedProduct = legoWorld.order(indata);
 					produktArea2.setText("" + orderedProduct);
+					findFiles();
+					produktArea.setText(table);
 				} else {
 					// do nothing
 				}
