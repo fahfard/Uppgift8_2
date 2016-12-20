@@ -3,6 +3,8 @@ import java.util.*;
 public class Legobit {
 	private int height;
 	private int length;
+	private String heightNumber;
+	private String lengthNumber;
 	
 	private static final Map<String, Integer> textNummer;
 	static {
@@ -35,22 +37,34 @@ public class Legobit {
 		map.put(10, "Tio");
 		nummerText = Collections.unmodifiableMap(map);
 	}
+	public String getheightNumber(){
+		return this.heightNumber;
+	}
+	public String getlengthNumber(){
+		return this.lengthNumber;
+	}
 	public int getHeight() {
 		return this.height;
 	}
 	public int getLength() {
 		return this.length;
 	}
-
+	
 	public Legobit (String type) {
-		String[] typeParts = type.split("X");
+		
+		if(type.length() > 5){
+			String[] typeParts = type.split("X");
 
-		this.height = textNummer.get(typeParts[0]); 
-		this.length = textNummer.get(typeParts[1]);
+			this.height = textNummer.get(typeParts[0]); 
+			this.length = textNummer.get(typeParts[1]);
+		} else {
+			String[] typeParts = type.split("x");
+			
+			this.heightNumber = nummerText.get(Integer.parseInt(typeParts[0]));
+			this.lengthNumber = nummerText.get(Integer.parseInt(typeParts[1]));
+		}
 	}
 	public String toString() {
-		//return super.toString() + " " + this.height + "-" + this.length;
-		//return super.toString() + " " + this.height + "-" + this.length;
 		return this.nummerText.get(this.height) + "X" + this.nummerText.get(this.length);
 	}
 

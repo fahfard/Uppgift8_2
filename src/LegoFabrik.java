@@ -1,3 +1,5 @@
+import static javax.swing.JOptionPane.*;
+
 public class LegoFabrik {
 	
 	private Lager lager;
@@ -12,13 +14,14 @@ public class LegoFabrik {
 
 
 	public Produkt order(String productName) {
+		
 		Produkt bestalldProdukt = new Produkt(productName);
 
 		this.lager.removeParts(bestalldProdukt);	
 		this.lager.save();
 		
 		if(!this.lager.checkLager())
-			System.out.print("Storage is running out of LEGO!\n"); // change this later!
+			showMessageDialog(null, "Storage is running out of LEGO!");
 		return bestalldProdukt;
 
 	}

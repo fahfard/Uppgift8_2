@@ -4,13 +4,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.io.PrintWriter;
-
+import static javax.swing.JOptionPane.*;
 
 public class Produkt {
 	private Map<Legobit, Integer> legobitarMap;
 	private String name;
-
-
 
 	public void save() {
 		try(  PrintWriter out = new PrintWriter("produkt.txt")  ){
@@ -71,7 +69,7 @@ public class Produkt {
 		String csvFile = this.name + "_produkt.txt";
         BufferedReader br = null;
         String line = "";
-        String cvsSplitBy = ",";
+        String table = "";
         
  		this.legobitarMap = new HashMap<Legobit, Integer>();
 
@@ -87,7 +85,19 @@ public class Produkt {
 				this.legobitarMap.put(legobit, amount);
 			}
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        	try(  PrintWriter out = new PrintWriter(this.name + "_produkt.txt")  ){
+    		    String indata = showInputDialog(null, "This product doesnt exist! Please enter Lego bits you wish it to contain!"
+    		    		+ "e.g (5_1x2,8_3x1 etc)");
+        		String newBits[] = indata.split(",");
+        		for(String lines: newBits){
+        			String bits[] = lines.split("_");
+        			Legobit legobit = new Legobit(bits[1]);
+        			table += legobit.getheightNumber() + "X" + legobit.getlengthNumber() + ", " + bits[0] + "\n"; 
+        		}
+    		    out.print( table );
+    		} catch (Exception ex) {
+    			System.out.println(ex);
+    		}
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
